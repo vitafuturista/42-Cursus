@@ -1,0 +1,35 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: adrgalle <adrgalle@student.42madrid.c      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/22 11:50:52 by adrgalle          #+#    #+#              #
+#    Updated: 2024/09/22 12:15:57 by adrgalle         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c
+OBJS = ${SRCS:.c=.o}
+NAME = libft.a
+LIBC = ar rcs
+CC = cc
+RM = rm -f
+CFLAGS = -Wall -Wextra -Werror
+
+.c.o:
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+
+${NAME}: ${OBJS}
+	${LIBC} ${NAME} ${OBJS}
+
+all: ${NAME}
+
+clean:
+	${RM} ${OBJS}
+
+fclean: clean
+	${RM} ${NAME}
+
+re: fclean all
